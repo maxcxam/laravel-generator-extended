@@ -3,8 +3,8 @@
 
 L5 includes a bunch of generators out of the box, so this package only needs to add a few things, like:
 
-- `make:model`
-- `make:model {ModelName}`
+- `make:entity`
+- `make:entity {ModelName}`
 
 
 
