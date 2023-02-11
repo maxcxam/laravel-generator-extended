@@ -37,16 +37,4 @@ class GeneratorsServiceProvider extends ServiceProvider
 
         $this->commands('command.maxcxam.entity');
     }
-
-    /**
-     * Register the make:migration generator.
-     */
-    private function registerMigrationGenerator()
-    {
-        $this->app->singleton('command.laracasts.migrate', function ($app) {
-            return $app['Laracasts\Generators\Commands\MigrationMakeCommand'];
-        });
-
-        $this->commands('command.laracasts.migrate');
-    }
 }
