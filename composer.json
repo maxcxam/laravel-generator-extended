@@ -17,10 +17,10 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=8.1",
-        "illuminate/support": "~v9.50.2",
-        "illuminate/filesystem": "~v9.50.2",
-        "illuminate/contracts": "~v9.50.2",
-        "illuminate/console": "~9.50.2"
+        "illuminate/support": "^9.5",
+        "illuminate/filesystem": "^9.5",
+        "illuminate/contracts": "^9.5",
+        "illuminate/console": "^9.5"
     },
     "extra": {
         "laravel": {
