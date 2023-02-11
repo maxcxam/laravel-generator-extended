@@ -13,12 +13,15 @@ use Symfony\Component\Console\Command\Command as CommandAlias;
 class MakeEntity extends Command
 {
     private array $fields = [];
+
     private array $types = [
         'string', 'array', 'text', 'translatable (for spatie)', 'relation'
     ];
+
     private array $relations = [
         'ManyToOne', 'ManyToMany' //TODO 'OneToMany', 'OneToOne'
     ];
+
     /**
      * The name and signature of the console command.
      *
