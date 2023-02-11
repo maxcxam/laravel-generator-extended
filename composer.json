@@ -1,0 +1,31 @@
+{
+    "name": "maxcxam/laravel-generator-extended",
+    "type": "library",
+    "license": "gpl",
+    "version": "1.2.1",
+    "autoload": {
+        "psr-4": {
+            "Maxcxam\\Generators\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "maxcxam",
+            "email": "maxcxam1979@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=8.1",
+        "illuminate/support": "~v9.50.2",
+        "Illuminate/Filesystem": "~v9.50.2",
+        "illuminate/contracts": "~v9.50.2"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Maxcxam\\Generators\\GeneratorsServiceProvider"
+            ]
+        }
+    }
+}
