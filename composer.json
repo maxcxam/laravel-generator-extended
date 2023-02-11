@@ -1,8 +1,8 @@
 {
     "name": "maxcxam/laravel-generator-extended",
     "type": "library",
-    "license": "gpl",
-    "version": "1.2.1",
+    "license": "MIT",
+    "description": "Extend Laravel 9 migration creator",
     "autoload": {
         "psr-4": {
             "Maxcxam\\Generators\\": "src/"
@@ -18,7 +18,7 @@
     "require": {
         "php": ">=8.1",
         "illuminate/support": "~v9.50.2",
-        "Illuminate/Filesystem": "~v9.50.2",
+        "illuminate/filesystem": "~v9.50.2",
         "illuminate/contracts": "~v9.50.2"
     },
     "extra": {
