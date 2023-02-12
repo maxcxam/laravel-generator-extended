@@ -15,7 +15,7 @@ class MakeEntity extends Command
     private array $fields = [];
 
     private array $types = [
-        'string', 'array', 'text', 'translatable (for spatie)', 'relation'
+        'string', 'array', 'text', 'translatable (for spatie)', 'relation', 'boolean'
     ];
 
     private array $relations = [

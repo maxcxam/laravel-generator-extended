@@ -2,6 +2,9 @@
 
 namespace Maxcxam\Generators\Lib;
 
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Maxcxam\Generators\Exception\FileExistsException;
+use Maxcxam\Generators\Exception\TableExistsException;
 use Maxcxam\Generators\Traits\WithRelations;
 
 class SchemaGenerator
@@ -40,6 +43,11 @@ SCHEMA;
         return sprintf("Schema::dropIfExists('%s');", $this->table);
     }
 
+    /**
+     * @throws TableExistsException
+     * @throws FileExistsException
+     * @throws FileNotFoundException
+     */
     private function generateFields():array
     {
         $result = [];
@@ -58,8 +66,14 @@ SCHEMA;
                     default => 'string',
                     'text' => 'longText',
                     'array', 'translatable' => 'json',
+                    'boolean' => 'boolean'
                 };
-                $result[] = '$table->' . $type . '("' . $field['field'] . '")->nullable(' . ($field['nullable'] ? 'TRUE' : 'FALSE') . ');';
+                if($type === 'boolean') {
+                    $result[] = '$table->boolean("' . $field['field'] . '")->default(1);';
+                } else {
+                    $result[] = '$table->' . $type . '("' . $field['field'] . '")->nullable(' . ($field['nullable'] ? 'TRUE' : 'FALSE') . ');';
+                }
+                //$result[] = '$table->' . $type . '("' . $field['field'] . '")->nullable(' . ($field['nullable'] ? 'TRUE' : 'FALSE') . ');';
             }
         }
         return $result;
