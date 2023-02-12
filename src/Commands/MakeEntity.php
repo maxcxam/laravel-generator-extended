@@ -82,16 +82,25 @@ class MakeEntity extends Command
                 (new Filesystem())->files(base_path() . '/app/Models'));
             $model = $this->choice('Related to:', $models,0,1);
             $relation = TRUE;
+            $default = NULL;
+            $nullable = $this->confirm('Can be null?');
+        } elseif ($type !== 'boolean') {
+            $nullable = $this->confirm('Can be null?');
+            $default = $this->choice('Default: ', [TRUE, FALSE],1,1);
+        } else {
+            $default = $this->ask('Default:');
+            $nullable = NULL;
         }
 
-        $nullable = $this->confirm('Can be null?');
+
         $this->fields[] = [
             'field' => $field,
             'type' => explode(' ', $type)[0],
             'nullable' => $nullable,
             'isRelation' => $relation,
             'relationType' => $relationType,
-            'relationModel' => $model
+            'relationModel' => $model,
+            'default' => $default
         ];
         if($this->confirm('Add new Field', TRUE)) $this->addField();
     }

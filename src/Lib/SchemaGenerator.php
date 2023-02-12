@@ -69,11 +69,16 @@ SCHEMA;
                     'boolean' => 'boolean'
                 };
                 if($type === 'boolean') {
-                    $result[] = '$table->boolean("' . $field['field'] . '")->default(1);';
+                    $fieldRow = '$table->boolean("' . $field['field'] . '")->default('.(int)$field['default'].');';
                 } else {
-                    $result[] = '$table->' . $type . '("' . $field['field'] . '")->nullable(' . ($field['nullable'] ? 'TRUE' : 'FALSE') . ');';
+                    $fieldRow = '$table->' . $type . '("' . $field['field'] . '")->nullable(' . ($field['nullable'] ? 'TRUE' : 'FALSE') . ')';
+                    $default = $field['default'];
+                    if((is_string($default) && !empty($default)) or is_int($default) or is_float($default) or is_double($default)) {
+                        $defaultValue = is_string($default) ? "'$default'" : $default;
+                        $fieldRow = $fieldRow.'->default('.$defaultValue.');';
+                    }
                 }
-                //$result[] = '$table->' . $type . '("' . $field['field'] . '")->nullable(' . ($field['nullable'] ? 'TRUE' : 'FALSE') . ');';
+                $result[] = $fieldRow;
             }
         }
         return $result;
