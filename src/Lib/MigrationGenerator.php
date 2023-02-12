@@ -49,8 +49,7 @@ class MigrationGenerator
             );
         }
         $stub = $this->fs->get(__DIR__ . '/../stubs/migration.stub');
-        $this->replaceClassName($stub)
-            ->replaceSchema($stub);
+        $this->replaceSchema($stub);
 
         $path = base_path().'/database/migrations/'.$this->fileName;
         $this->fs->put($path, $stub);
