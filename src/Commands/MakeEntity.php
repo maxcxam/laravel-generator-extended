@@ -5,6 +5,7 @@ namespace Maxcxam\Generators\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Artisan;
 use Maxcxam\Generators\Exception\FileExistsException;
 use Maxcxam\Generators\Exception\TableExistsException;
 use Maxcxam\Generators\Lib\MigrationGenerator;
@@ -52,6 +53,9 @@ class MakeEntity extends Command
         try {
             $result = (new MigrationGenerator($this->fields, $entity))->fire();
             $this->line($result);
+            if($this->confirm('Migrate new migration?', FALSE)) {
+                Artisan::call('migrate');
+            }
         } catch (TableExistsException|FileExistsException|FileNotFoundException $e) {
             $this->line($e->getMessage());
             return CommandAlias::FAILURE;
