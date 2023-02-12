@@ -18,7 +18,8 @@ class PivotSchemaGenerator extends MigrationGenerator
             'nullable' => FALSE,
             'isRelation' => TRUE,
             'relationType' => 'ManyToOne',
-            'relationModel' => $firstModel
+            'relationModel' => $firstModel,
+            'default' => NULL
         ];
         $fields[] = [
             'field' => 'pivot',
@@ -26,7 +27,8 @@ class PivotSchemaGenerator extends MigrationGenerator
             'nullable' => FALSE,
             'isRelation' => TRUE,
             'relationType' => 'ManyToOne',
-            'relationModel' => $secondModel
+            'relationModel' => $secondModel,
+            'default' => NULL
         ];
         parent::__construct($fields, $model, TRUE);
     }
