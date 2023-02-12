@@ -89,7 +89,8 @@ class MakeEntity extends Command
             $default = $this->ask('Default');
         } else {
 
-            $default = $this->choice('Default', [TRUE, FALSE],1,1);
+            $default = $this->choice('Default', ['true', 'false'],1,1);
+            $default = $default === 'true';
             $nullable = NULL;
         }
 
