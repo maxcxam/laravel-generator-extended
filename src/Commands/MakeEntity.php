@@ -86,9 +86,10 @@ class MakeEntity extends Command
             $nullable = $this->confirm('Can be null?');
         } elseif ($type !== 'boolean') {
             $nullable = $this->confirm('Can be null?');
-            $default = $this->choice('Default: ', [TRUE, FALSE],1,1);
+            $default = $this->ask('Default');
         } else {
-            $default = $this->ask('Default:');
+
+            $default = $this->choice('Default', [TRUE, FALSE],1,1);
             $nullable = NULL;
         }
 
